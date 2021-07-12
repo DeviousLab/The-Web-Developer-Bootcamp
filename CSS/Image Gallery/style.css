@@ -1,0 +1,16 @@
+img {
+    width: 30%;
+    float: left;
+    margin: 1.66%;
+}
+
+h4 {
+    font-family: Raleway;
+    margin: 1.66%;
+    font-size: 120%;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-bottom: 2px solid black;
+    width: 96.5%;
+    padding-bottom: 20px;
+}
