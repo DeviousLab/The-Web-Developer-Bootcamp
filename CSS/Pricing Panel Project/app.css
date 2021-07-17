@@ -96,7 +96,7 @@ body {
     color: #016ff9;
 }
 
-.pricing-features-items {
+.pricing-features-item {
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 12px;
@@ -105,7 +105,7 @@ body {
     border-top: 1px solid #e1f1ff;
 }
 
-.pricing-features-items:last-child {
+.pricing-features-item:last-child {
     border-bottom: 1px solid #e1f1ff;
 }
 
@@ -124,7 +124,7 @@ body {
     padding: 15px 35px;
     text-decoration: none;
     margin: 25px 0px;
-    transition: background-color 200ms ease-in;
+    transition: background-color 200ms ease-in-out;
 }
 
 .pricing-button:hover, .pricing-button:focus {
