@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'name cannot be blank']
     },
     price: {
         type: Number,
@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
         lowercase: true,
         enum: ['fruit', 'vegetable', 'dairy']
     }
-});
+})
 
 const Product = mongoose.model('Product', productSchema);
 
