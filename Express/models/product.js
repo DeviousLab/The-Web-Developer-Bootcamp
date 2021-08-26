@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+
 const productSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'name cannot be blank']
+        required: true
     },
     price: {
         type: Number,
@@ -20,8 +21,9 @@ const productSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Farm'
     }
-})
+});
+
 
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = Product;
+module.exports = Product; 
