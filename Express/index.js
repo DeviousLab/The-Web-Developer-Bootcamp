@@ -7,6 +7,7 @@ const AppError = require('./AppError');
 
 
 const Product = require('./models/product');
+const Farm = require('./models/farm');
 
 mongoose.connect('mongodb://localhost:27017/farmStand2', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -22,8 +23,26 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
+//Farms
+
+app.get('/farms', wrapAsync(async (req, res) => {
+    const farms = await Farm.find({});
+    res.render('farms/index', { farms });
+}));
+
+app.get('/farms/new', (req, res) => {
+    res.render('farms/new');
+});
+
+app.post('/farms', wrapAsync(async (req, res, next) => {
+    const farm = new Farm(req.body);
+    await farm.save();
+    res.redirect('/farms');
+}));
+
+//Products
 const categories = ['fruit', 'vegetable', 'dairy'];
 
 function wrapAsync(fn) {
