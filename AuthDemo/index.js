@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const User = require('./models/user');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 mongoose.connect('mongodb://localhost:27017/authDemo', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(session({ secret: 'notagoodsecret'}));
 
 app.get('/', (req, res) => {
     res.send("Hello World!")
@@ -34,6 +36,7 @@ app.post('/register', async(req, res) => {
         password: hash
     });
     await user.save();
+    req.session.userId = user._id;
     res.redirect('/'); 
 });
 
@@ -45,10 +48,11 @@ app.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username })
     if (!user) {
-        next(); // calls the second middleware
+        next();
     }
     const validPassword = await bcrypt.compare(password, user.password)
     if(validPassword) {
+        req.session.userId = user._id;
         res.send("You are logged in!")
     } else {
         res.send("Invalid password!")
@@ -57,6 +61,9 @@ app.post('/login', async (req, res, next) => {
 });
 
 app.get('/secret', (req, res) => {
+    if(!req.session.userId) {
+        res.redirect('/login');
+    }
     res.send('Secret');
 });
 
