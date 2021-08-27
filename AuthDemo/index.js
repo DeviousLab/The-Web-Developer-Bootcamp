@@ -36,6 +36,26 @@ app.post('/register', async(req, res) => {
     await user.save();
     res.redirect('/'); 
 });
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', async (req, res, next) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username })
+    if (!user) {
+        next(); // calls the second middleware
+    }
+    const validPassword = await bcrypt.compare(password, user.password)
+    if(validPassword) {
+        res.send("You are logged in!")
+    } else {
+        res.send("Invalid password!")
+    }
+    
+});
+
 app.get('/secret', (req, res) => {
     res.send('Secret');
 });
