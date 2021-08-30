@@ -40,14 +40,6 @@
                         Looks good!
                     </div>
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="image">Image URL</label>
-                    <input class="form-control type=" text" name="campground[image]" id="image"
-                        value=" " required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div> -->
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
                     <textarea class="form-control type=" text" name="campground[description]" id="description"
@@ -55,6 +47,15 @@
                     <div class="valid-feedback">
                         Looks good!
                     </div>
+                </div>
+                <div class="mb-3">
+                    <% campground.images.forEach(function(img, i) { %>
+                        <img src="<%= img.url %>" class="img-thumbnail">
+                        <div class="form-check-inline">
+                            <input type="checkbox" name="deleteImages[]" id="image-<%=i %>" value="<%=img.filename%>">
+                        </div>
+                        <label for="image-<%=i %>">Delete?</label>
+                    <% }) %> 
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-info">Update Campground</button>
