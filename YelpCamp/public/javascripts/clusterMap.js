@@ -6,6 +6,11 @@ const map = new mapboxgl.Map({
     zoom: 3
 });
 
+const nav = new mapboxgl.NavigationControl({
+    visualizePitch: true,
+});
+map.addControl(nav, 'bottom-right');
+
 map.on('load', () => {
     // Add a new source from our GeoJSON data and
     // set the 'cluster' option to true. GL-JS will
