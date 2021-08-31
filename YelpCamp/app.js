@@ -12,6 +12,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 const User = require('./models/user');
 
 const mongoSanitize = require('express-mongo-sanitize');
@@ -19,7 +20,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
-
+// const dbURL = process.env.MONGODB_URL
+// mongodb://localhost:27017/yelp-camp
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
   useNewUrlParser: true,
   useCreateIndex: true,
