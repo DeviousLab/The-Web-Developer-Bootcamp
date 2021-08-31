@@ -29,6 +29,9 @@ const seedDB = async () => {
       description:
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus ullam optio quisquam excepturi ipsum nisi ab molestias expedita pariatur nostrum mollitia vel, accusamus non voluptatum aperiam aliquam architecto impedit consectetur.',
       price,
+      geometry: { 
+        type: 'Point', 
+        coordinates: [ -116.84605395, 34.23066445 ] },
       images: [
         {
           url: 'https://res.cloudinary.com/deviouslab/image/upload/v1630363163/YelpCamp/wkdklrmtaviayb2a2d24.jpg',
