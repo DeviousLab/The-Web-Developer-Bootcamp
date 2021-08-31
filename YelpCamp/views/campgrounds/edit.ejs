@@ -35,7 +35,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Upload Images</label>
-                    <input class="form-control" name="image" type="file" id="formFileMultiple image" multiple>
+                    <input class="form-control" name="image" type="file" id="formFileMultiple" multiple>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="mb-3">
                     <% campground.images.forEach(function(img, i) { %>
-                        <img src="<%= img.thumbnail %>" class="img-thumbnail">
+                        <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="<%= campground.title %>">
                         <div class="form-check-inline">
                             <input type="checkbox" name="deleteImages[]" id="image-<%=i %>" value="<%=img.filename%>">
                         </div>
