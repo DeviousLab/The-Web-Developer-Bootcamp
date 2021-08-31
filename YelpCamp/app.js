@@ -11,6 +11,7 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const helmet = require('helmet');
 const User = require('./models/user');
 
 const mongoSanitize = require('express-mongo-sanitize');
@@ -47,6 +48,7 @@ app.use(
   }),
 );
 
+
 const sessionConfig = {
   name: 'session',
   secret: 'thisisthesecret',
@@ -61,6 +63,7 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({contentSecurityPolicy: false}));
 
 app.use(passport.initialize());
 app.use(passport.session());
